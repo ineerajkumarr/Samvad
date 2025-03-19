@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import useAuthStore from "./store/store";
 import Homepage from "./pages/Homepage";
