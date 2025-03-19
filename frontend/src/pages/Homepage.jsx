@@ -136,7 +136,10 @@ const HomePage = () => {
     );
   };
 
-  const isOnline = activeChat && onlineUsers.includes(activeChat._id);
+  const isOnline =
+    activeChat &&
+    Array.isArray(onlineUsers) &&
+    onlineUsers.includes(activeChat._id);
 
   const search = async (e) => {
     e.preventDefault();
@@ -218,7 +221,8 @@ const HomePage = () => {
           // users bar
           <div className="space-y-3">
             {users.map((user) => {
-              const isOnline = onlineUsers.includes(user._id);
+              const isOnline =
+                Array.isArray(onlineUsers) && onlineUsers.includes(user._id);
               return (
                 <div
                   key={user._id}

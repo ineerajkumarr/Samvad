@@ -4,7 +4,8 @@ import { flushSync } from "react-dom";
 import toast from "react-hot-toast";
 import { io, Socket } from "socket.io-client";
 
-const BaseURL = "http://localhost:5000";
+const BaseURL =
+  import.meta.env.MODE === "development" ? "http://localhost:5000/" : "/";
 
 const useAuthStore = create((set, get) => ({
   authUser: null,
