@@ -17,7 +17,7 @@ const Navbar = () => {
     e.preventDefault();
     await logout();
     navigate("/login");
-    console.log("Bye");
+    //console.log("Bye");
   };
 
   return (

@@ -42,13 +42,13 @@ export const signup = async (req, res) => {
       res.status(400).json({ message: "Invalid User data" });
     }
   } catch (error) {
-    console.log("Error occured at creating new User ", error);
+    //console.log("Error occured at creating new User ", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 export const login = async (req, res) => {
-  console.log("Debug cookies ", req.cookies);
+  //console.log("Debug cookies ", req.cookies);
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
@@ -68,7 +68,7 @@ export const login = async (req, res) => {
       profilePic: user.profilePic,
     });
   } catch (error) {
-    console.log("Error Occured at Login");
+    //console.log("Error Occured at Login");
     res.status(500).json({ message: "Internal serevr Error" });
   }
 };
@@ -77,9 +77,9 @@ export const logout = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
     res.status(201).json({ message: "Logged Out" });
-    console.log("Log Out Successful");
+    //console.log("Log Out Successful");
   } catch (error) {
-    console.log("Error Occured at Logout");
+    //console.log("Error Occured at Logout");
     res.status(500).json({ message: "Internal serevr Error" });
   }
 };
@@ -99,7 +99,7 @@ export const updateProfile = async (req, res) => {
     );
     res.status(200).json(updatedUser);
   } catch (error) {
-    console.log("Error occured at Update Profile");
+    //console.log("Error occured at Update Profile");
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -108,7 +108,7 @@ export const checkAuth = (req, res) => {
   try {
     res.status(200).json(req.user);
   } catch (error) {
-    console.log("error in checkauth");
+    //console.log("error in checkauth");
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -140,7 +140,7 @@ export const addContact = async (req, res) => {
 
     res.status(200).json({ message: "Contact added successfully" });
   } catch (error) {
-    console.error("Error adding contact:", error);
+    //console.error("Error adding contact:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };

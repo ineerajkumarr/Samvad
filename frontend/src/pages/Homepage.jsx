@@ -62,7 +62,7 @@ const HomePage = () => {
 
   let lastDisplayedDate = null;
   // const [searchResults,setSearchResults]=useState([]);
-  console.log("Online Users", onlineUsers);
+  //console.log("Online Users", onlineUsers);
   useEffect(() => {
     loadingChats();
   }, [searchMode, loadingChats]);
@@ -92,12 +92,12 @@ const HomePage = () => {
       setSelectedImage(reader.result);
       e.target.value = ""; // Store base64 image
     };
-    console.log(selectedImage);
+    //console.log(selectedImage);
   };
 
   const handleSendMessage = () => {
     if (messageText.trim() === "" && !selectedImage) return;
-    console.log({ text: messageText, image: selectedImage });
+    //console.log({ text: messageText, image: selectedImage });
     sendMessage(
       activeChat._id,
       { text: messageText, image: selectedImage },
@@ -144,7 +144,7 @@ const HomePage = () => {
   const search = async (e) => {
     e.preventDefault();
     const res = await searchUser(searchQuery);
-    console.log(res);
+    //console.log(res);
   };
 
   return (

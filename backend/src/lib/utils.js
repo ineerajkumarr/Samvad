@@ -12,6 +12,6 @@ export const generateToken = (userId, res) => {
     sameSite: "strict",
     secure: process.env.NODE_ENV != "development",
   });
-  console.log("Token for debug ", token);
+  //console.log("Token for debug ", token);
   return token;
 };

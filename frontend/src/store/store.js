@@ -30,29 +30,29 @@ const useAuthStore = create((set, get) => ({
     set({ isCheckingAuth: true });
     try {
       const res = await axiosInstance.get("/auth/check");
-      console.log(res.data);
+      //console.log(res.data);
       set({ authUser: res.data });
       get().connectSocket();
     } catch (error) {
-      console.log("Error causedd in checking Auth fron frontend", error);
+      //console.log("Error causedd in checking Auth fron frontend", error);
       set({ authUser: null });
     } finally {
-      console.log("finally");
+      //console.log("finally");
       // flushSync(() => set({ isCheckingAuth: false }));
     }
-    console.log("mkc");
+    //console.log("mkc");
     set({ isCheckingAuth: false });
   },
   login: async (data) => {
     set({ isLogging: true });
     try {
       const res = await axiosInstance.post("/auth/login", data);
-      console.log("Logged IN Successful", res.data);
+      //console.log("Logged IN Successful", res.data);
       set({ authUser: res.data });
       toast.success("Log In Successful");
       get().connectSocket();
     } catch (error) {
-      console.log("Error occured in lgoin from Frontend/Store ", error);
+      //console.log("Error occured in lgoin from Frontend/Store ", error);
       set({ authUser: null });
       toast.error("Some error occured");
     } finally {
@@ -66,7 +66,7 @@ const useAuthStore = create((set, get) => ({
       toast.success("Logged out successfully");
       get().disconnectSocket();
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       toast.error(error.response.data.message);
     }
   },
@@ -78,7 +78,7 @@ const useAuthStore = create((set, get) => ({
       toast.success("User Registered");
       get().connectSocket();
     } catch (error) {
-      console.log("Error occured while signing in atr frontend/Store ", error);
+      //console.log("Error occured while signing in atr frontend/Store ", error);
       toast.error("Some error occured");
     } finally {
       set({ isSigning: false });
@@ -89,10 +89,10 @@ const useAuthStore = create((set, get) => ({
     try {
       const res = await axiosInstance.put("/auth/update-profile", data);
       set({ authUser: res.data });
-      // console.log(res.data);
+      // //console.log(res.data);
       toast.success("Profile Photo uploaded");
     } catch (error) {
-      console.log("Error occured in profile Update ", error);
+      //console.log("Error occured in profile Update ", error);
       toast.error("Some Error Occured");
     } finally {
       set({ isUpdatingProfile: false });
@@ -102,10 +102,10 @@ const useAuthStore = create((set, get) => ({
     set({ isLoadingChats: true });
     try {
       const res = await axiosInstance.get("/message/users");
-      console.log("friends", res.data);
+      //console.log("friends", res.data);
       set({ chatUsers: res.data });
     } catch (error) {
-      console.log("error is loading chats for sidebar ", error);
+      //console.log("error is loading chats for sidebar ", error);
       toast.error("Some error occured");
     } finally {
       set({ isLoadingChats: false });
@@ -116,9 +116,9 @@ const useAuthStore = create((set, get) => ({
     try {
       const res = await axiosInstance.get(`/message/${id}`);
       set({ messages: res.data });
-      console.log("messages", res.data);
+      //console.log("messages", res.data);
     } catch (error) {
-      console.log("error in loading chats", error);
+      //console.log("error in loading chats", error);
     } finally {
       set({ isLoadingChats: false });
     }
@@ -129,18 +129,18 @@ const useAuthStore = create((set, get) => ({
       if (!flag) {
         //code for adding frind
         const add = await axiosInstance.patch(`/auth/add-contact/${id}`);
-        console.log(add.data);
+        //console.log(add.data);
       }
       const res = await axiosInstance.post(`/message/${id}`, data);
-      console.log(res.data);
+      //console.log(res.data);
       set((state) => ({
         messages: [...state.messages, res.data],
       }));
     } catch (error) {
-      console.log("error in sending message ", error);
+      //console.log("error in sending message ", error);
       toast.error("Message not Sent !");
     } finally {
-      console.log("ran");
+      //console.log("ran");
       set({ isLoadingMessages: false });
     }
   },
@@ -148,10 +148,10 @@ const useAuthStore = create((set, get) => ({
     set({ isSearchingUser: true });
     try {
       const res = await axiosInstance.get(`/message/user/${data}`);
-      console.log(res.data);
+      //console.log(res.data);
       set({ searchedUser: res.data });
     } catch (error) {
-      console.log("Error in searchin user ", error);
+      //console.log("Error in searchin user ", error);
       set({ searchedUser: null });
     } finally {
       set({ isSearchingUser: false });
@@ -169,12 +169,12 @@ const useAuthStore = create((set, get) => ({
     socket.connect();
     set({ socket: socket });
     socket.on("getOnlineUsers", (userIds) => {
-      console.log("Inside func.", userIds);
+      //console.log("Inside func.", userIds);
       set((state) => ({
         onlineUsers: userIds, // ✅ Correctly updating Zustand state
       }));
     });
-    console.log("onlnin :", get().onlineUSers);
+    //console.log("onlnin :", get().onlineUSers);
   },
   disconnectSocket: () => {
     if (get().socket?.connected) get().socket.disconnect();
