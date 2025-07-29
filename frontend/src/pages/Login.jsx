@@ -5,8 +5,8 @@ import useAuthStore from "../store/store";
 
 function App() {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "demo@gmail.com",
+    password: "demo1234",
   });
 
   const [showPassword, setShowPassword] = useState(false);
